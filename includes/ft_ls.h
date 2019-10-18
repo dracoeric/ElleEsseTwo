@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/10/18 17:01:26 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/18 17:35:42 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@
 /*
 ** Core functions
 */
+void		ls_create_list_from_args(int len, char **list, short options);
 int			ls_get_options(int argc, char **argv, short *options);
+void		ls_print(int len, char **list, short options);
 
 /*
 ** Utility functions

@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 10:23:33 by erli              #+#    #+#              #
-#    Updated: 2019/10/18 17:02:57 by erli             ###   ########.fr        #
+#    Updated: 2019/10/18 17:40:19 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,7 @@ SRCSDIR			=	srcs
 OBJSDIR			= 	objs
 
 SRCS			=	main.c	\
-					ls_get_options.c \
+					ls_create_list_from_args.c	ls_get_options.c 	ls_print.c	\
 					\
 					ls_usage.c \
 					\
