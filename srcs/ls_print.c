@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ls_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 17:35:47 by erli             ###   ########.fr       */
+/*   Created: 2019/10/18 17:29:49 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 18:52:48 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+/*
+** Prints informations for each file in the list
+** with the format and depth specified by options (long, recursive, etc)
+*/
+
+void		ls_print(t_ls_data *data)
 {
-	int			args_offset;
-	t_ls_data	data[1];
-
-	args_offset = ls_get_options(argc, argv, &(data->options));
-	if (args_offset < 0)
-		return (1);
-	argv = (argv + args_offset);
-	data->list = 0;
-	ls_create_dir_list(argc - args_offset, argv, data);
-	ls_print(data);
-	return (0);
+	if (data != 0)
+		ft_printf("OK\n");
 }

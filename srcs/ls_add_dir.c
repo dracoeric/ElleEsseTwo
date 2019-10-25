@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ls_add_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 17:35:47 by erli             ###   ########.fr       */
+/*   Created: 2019/10/25 18:10:50 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 18:19:25 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
+void		ls_add_dir(t_ls_data *data, char *pathname)
 {
-	int			args_offset;
-	t_ls_data	data[1];
+	t_ls_dir_list	*dir;
+	t_ls_dir_list	*cursor;
+	int				i;
 
-	args_offset = ls_get_options(argc, argv, &(data->options));
-	if (args_offset < 0)
-		return (1);
-	argv = (argv + args_offset);
-	data->list = 0;
-	ls_create_dir_list(argc - args_offset, argv, data);
-	ls_print(data);
-	return (0);
+	if ((dir = ls_create_dir(pathname)) == 0)
+		return ;
+	if (data->list == 0)
+		data->list = dir;
+	else
+	{
+		i = 0;
+		cursor = data->list;
+		while (cursor->next != 0 && i < data->list->cursor)
+			cursor = cursor->next;
+		dir->next = cursor->next;
+		cursor->next = dir;
+		data->list->cursor += 1;
+	}
 }

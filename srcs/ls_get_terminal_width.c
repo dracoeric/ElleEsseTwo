@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ls_get_terminal_width.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 17:35:47 by erli             ###   ########.fr       */
+/*   Created: 2019/10/25 11:07:13 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 11:08:34 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include <sys/ioctl.h>
+#include <unistd.h>
 
-int		main(int argc, char **argv)
+int		ls_get_terminal_width(void)
 {
-	int			args_offset;
-	t_ls_data	data[1];
+	struct winsize ws;
 
-	args_offset = ls_get_options(argc, argv, &(data->options));
-	if (args_offset < 0)
-		return (1);
-	argv = (argv + args_offset);
-	data->list = 0;
-	ls_create_dir_list(argc - args_offset, argv, data);
-	ls_print(data);
-	return (0);
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+	return (ws.ws_col);
 }

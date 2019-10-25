@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:25:18 by erli              #+#    #+#             */
-/*   Updated: 2019/10/18 15:01:57 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 15:03:19 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void	ls_print_options(short options)
 		(options & LS_REVERSE ? 'x' : ' '));
 	ft_printf("Sort by modified time:\t\t%c\n",
 		(options & LS_SORT_MOD_TIME ? 'x' : ' '));
-	ft_printf("Sort by alphabetical order:\t%c\n",
-		(options & LS_SORT_ALPHA ? 'x' : ' '));
-	ft_printf("Sort by access time:\t\t%c\n",
+	ft_printf("Access time:\t\t\t%c\n",
 		(options & LS_ACCESS_TIME ? 'x' : ' '));
 	ft_printf("Not sorted:\t\t\t%c\n", (options & LS_NOT_SORTED ? 'x' : ' '));
 	ft_printf("Don't show owner:\t\t%c\n",
 		(options & LS_NO_OWNER ? 'x' : ' '));
 	ft_printf("Treat directories as files:\t%c\n",
 		(options & LS_DIR_AS_FILE ? 'x' : ' '));
-	ft_printf("Color:\t\t\t\t%c\n=================================\n\n",
+	ft_printf("Color:\t\t\t\t%c\n",
 		(options & LS_COLOR ? 'x' : ' '));
+	ft_printf("Args:\t\t\t\t%c\n=================================\n\n",
+		(options & LS_ARGS_LIST ? 'x' : ' '));
 }
