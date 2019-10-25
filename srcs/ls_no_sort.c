@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ls_no_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 16:05:35 by erli             ###   ########.fr       */
+/*   Created: 2019/10/25 13:27:21 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 16:10:24 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
-{
-	int			args_offset;
-	t_ls_data	data[1];
+/*
+** Folders are smaller than files if LS_ARGS_LIST is on.
+** Return 1 if a > b, 0 if not.
+*/
 
-	args_offset = ls_get_options(argc, argv, &(data->options));
-	if (args_offset < 0)
-		return (1);
-	argv = (argv + args_offset);
-	data->list = 0;
-	ls_create_list(argc - args_offset, argv, data);
-	ls_print(argc - args_offset, argv, data->options);
+int			ls_no_sort(t_ls_list *a, t_ls_list *b, short options)
+{
+	if (a == 0 || b == 0)
+		return (0);
+	if (options & LS_ARGS_LIST
+		&& (a->stat.st_mode & S_IFDIR)^(b->stat.st_mode & S_IFDIR))
+		return (a->stat.st_mode & S_IFDIR ? 0 : 1);
 	return (0);
 }

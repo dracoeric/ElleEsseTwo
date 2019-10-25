@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_create_list_from_args.c                         :+:      :+:    :+:   */
+/*   ls_print_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 17:36:26 by erli              #+#    #+#             */
-/*   Updated: 2019/10/18 17:41:28 by erli             ###   ########.fr       */
+/*   Created: 2019/10/25 15:04:10 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 15:09:09 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Create a list of file or directory names from the provided command line
-** arguments. It does so by sorting the provided list accordings to the
-** required options and removing non accessible files or directories.
-** Every move is done in place.
-*/
+#include "ft_ls.h"
+#include "libft.h"
 
-void		ls_create_list_from_args(int len, char **list, short options)
+void	ls_print_data(t_ls_data *data)
 {
-	if (len != 0 && list != 0 && options != 0)
-		return ;
+	t_ls_list *bubble;
+
+	ft_putstr("\n========== Data ==========\nList:\n");
+	bubble = data->list;
+	while (bubble != 0)
+	{
+		ft_printf("%s->", bubble->pathname);
+		bubble = bubble->next;
+	}
+	ft_putstr("0\n\n");
+	ls_print_options(data->options);
 }
