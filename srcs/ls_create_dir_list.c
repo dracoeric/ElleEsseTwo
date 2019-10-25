@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 17:36:26 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 18:51:50 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 18:56:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void			ls_create_dir_list(int len, char **argv, t_ls_data *data)
 		ls_add_entry(data, argv[i++]);
 	if (data->options & LS_ARGS_LIST)
 		data->options ^= LS_ARGS_LIST;
+	ls_print_data(data);
 }

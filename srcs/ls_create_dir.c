@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 11:49:28 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 17:59:54 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 18:57:28 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <stdio.h>
 #include <errno.h>
 
 t_ls_dir_list	*ls_create_dir(char *path)

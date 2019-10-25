@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 11:49:28 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 18:52:13 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 18:56:53 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <stdio.h>
 #include <errno.h>
 
 t_ls_entry_list	*ls_create_entry(char *path)
