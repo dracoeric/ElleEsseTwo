@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 16:05:35 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 17:35:47 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 		return (1);
 	argv = (argv + args_offset);
 	data->list = 0;
-	ls_create_list(argc - args_offset, argv, data);
-	ls_print(argc - args_offset, argv, data->options);
+	ls_create_dir_list(argc - args_offset, argv, data);
+	ls_print(data);
 	return (0);
 }
