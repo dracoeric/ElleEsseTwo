@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 10:23:33 by erli              #+#    #+#              #
-#    Updated: 2019/10/18 17:40:19 by erli             ###   ########.fr        #
+#    Updated: 2019/10/25 11:21:04 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,7 +23,9 @@ SRCS			=	main.c	\
 					\
 					\
 					\
-					ls_print_options.c
+					ls_print_options.c \
+					\
+					ls_get_terminal_width.c
 
 
 

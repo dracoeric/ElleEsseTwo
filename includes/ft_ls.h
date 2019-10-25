@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 11:45:16 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 11:52:48 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,11 @@ void		ls_usage(void);
 */
 
 void		ls_print_options(short options);
+
+/*
+** POC functions
+*/
+
+int			ls_get_terminal_width(void);
 
 #endif
