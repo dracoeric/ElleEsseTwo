@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 13:27:21 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 16:03:02 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 18:51:13 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 ** Return 1 if a > b, 0 if not
 */
 
-int			ls_cmp_last_mod(t_ls_list *a, t_ls_list *b, short options)
+int			ls_cmp_last_mod(t_ls_entry_list *a, t_ls_entry_list *b,
+				short options)
 {
 	int	res;
 
 	if (a == 0 || b == 0)
 		return (0);
 	if (options & LS_ARGS_LIST
-		&& (a->stat.st_mode & S_IFDIR)^(b->stat.st_mode & S_IFDIR))
+		&& (a->stat.st_mode & S_IFDIR) ^ (b->stat.st_mode & S_IFDIR))
 		return (a->stat.st_mode & S_IFDIR ? 0 : 1);
 	if (a->stat.st_mtimespec.tv_sec == b->stat.st_mtimespec.tv_sec)
 		res = (a->stat.st_mtimespec.tv_nsec > b->stat.st_mtimespec.tv_nsec);

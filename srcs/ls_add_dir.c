@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print.c                                         :+:      :+:    :+:   */
+/*   ls_add_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 17:29:49 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 18:52:48 by erli             ###   ########.fr       */
+/*   Created: 2019/10/25 18:10:50 by erli              #+#    #+#             */
+/*   Updated: 2019/10/25 18:19:25 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
-/*
-** Prints informations for each file in the list
-** with the format and depth specified by options (long, recursive, etc)
-*/
-
-void		ls_print(t_ls_data *data)
+void		ls_add_dir(t_ls_data *data, char *pathname)
 {
-	if (data != 0)
-		ft_printf("OK\n");
+	t_ls_dir_list	*dir;
+	t_ls_dir_list	*cursor;
+	int				i;
+
+	if ((dir = ls_create_dir(pathname)) == 0)
+		return ;
+	if (data->list == 0)
+		data->list = dir;
+	else
+	{
+		i = 0;
+		cursor = data->list;
+		while (cursor->next != 0 && i < data->list->cursor)
+			cursor = cursor->next;
+		dir->next = cursor->next;
+		cursor->next = dir;
+		data->list->cursor += 1;
+	}
 }

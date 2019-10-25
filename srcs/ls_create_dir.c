@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_create_node.c                                   :+:      :+:    :+:   */
+/*   ls_create_dir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 11:49:28 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 16:08:09 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 17:59:54 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@
 #include <string.h>
 #include <errno.h>
 
-t_ls_list	*ls_create_node(char *path)
+t_ls_dir_list	*ls_create_dir(char *path)
 {
-	t_ls_list *node;
+	t_ls_dir_list *node;
 
-	if (!(node = (t_ls_list*)malloc(sizeof(t_ls_list))))
-		return (ft_msg_ptr(2, "Could not allocade node\n", 0));
-	node->pathname = path;
-	if ((stat(path, &(node->stat))) != 0)
+	if (!(node = (t_ls_dir_list*)malloc(sizeof(t_ls_dir_list))))
 	{
-		ft_dprintf(2, "ls: %s: %s\n", path, strerror(errno));
-		return (0);
+		perror("ft_ls");
+		exit(EXIT_FAILURE);
 	}
+	node->pathname = path;
+	node->list = 0;
+	node->max_name_size = 0;
+	node->nb_col_entries = 0;
+	node->cursor = 0;
 	node->next = 0;
 	return (node);
 }
