@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:43:28 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 11:36:23 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 16:09:42 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ls_get_options(int argc, char **argv, short *options)
 	int	ret;
 
 	i = 1;
-	*options = 0;
+	*options = LS_ARGS_LIST;
 	ret = 0;
 	while (i < argc && !ret)
 	{

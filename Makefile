@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 10:23:33 by erli              #+#    #+#              #
-#    Updated: 2019/10/25 11:21:04 by erli             ###   ########.fr        #
+#    Updated: 2019/10/25 15:04:04 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,13 +17,15 @@ SRCSDIR			=	srcs
 OBJSDIR			= 	objs
 
 SRCS			=	main.c	\
-					ls_create_list_from_args.c	ls_get_options.c 	ls_print.c	\
+					ls_create_list.c	ls_get_options.c 	ls_print.c		\
+					ls_create_node.c	\
 					\
-					ls_usage.c \
+					ls_usage.c 			ls_cmp_last_access.c				\
+					ls_cmp_last_mod.c	ls_no_sort.c		ls_cmp_alpha.c	\
 					\
 					\
 					\
-					ls_print_options.c \
+					ls_print_options.c ls_print_data.c\
 					\
 					ls_get_terminal_width.c
 
@@ -57,7 +59,7 @@ DEFAULT			=	"\x1B[0m"
 
 
 all				:	libft
-					@make -s $(NAME)
+					@make -s  $(NAME)
 
 $(NAME)			:	$(OBJS) $(MYLIB)
 					@echo "Compiling:" $(GREEN) $(NAME) $(DEFAULT)
