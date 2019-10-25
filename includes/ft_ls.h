@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/10/18 17:35:42 by erli             ###   ########.fr       */
+/*   Updated: 2019/10/25 11:45:16 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define LS_SHOW_HIDDEN (1 << 2)
 # define LS_REVERSE (1 << 3)
 # define LS_SORT_MOD_TIME (1 << 4)
-# define LS_SORT_ALPHA (1 << 5)
 # define LS_ACCESS_TIME (1 << 6)
 # define LS_NOT_SORTED (1 << 7)
 # define LS_NO_OWNER (1 << 8)
