@@ -1,6 +1,5 @@
 Things left to do:
-- Change main to remove print_data.
-- instead use a while loop (while data->list != 0)
-- think of a y to consume each dir
+- add directories in the list from the pathname list
+- populate directories with readdir
 - don't forget to put functions to free stuffs
 - then formatting
