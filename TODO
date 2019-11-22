@@ -1,5 +1,5 @@
 Things left to do:
-- add directories in the list from the pathname list
-- populate directories with readdir
+- function to free le path list
+- define ls_print_path
 - don't forget to put functions to free stuffs
 - then formatting

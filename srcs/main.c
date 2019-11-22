@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 17:03:51 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 17:54:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static void	ls_print_arg_files(t_ls_dir_list *list, short options,
 {
 	if (list == 0)
 		return ;
-	while (list->flist != 0)
-		ls_print_path(list, options, print_folder_name);
+	ls_print_path(list, options, print_folder_name);
 }
 
 static void	ls_set_cmp(t_ls_data *data)

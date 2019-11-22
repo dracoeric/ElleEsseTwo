@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 17:02:32 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 17:19:44 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define LS_COLOR (1 << 10)
 
 # include <sys/stat.h>
+# include <dirent.h>
 
 /*
 ** Structures
@@ -48,6 +49,7 @@ typedef struct	s_ls_dir_list
 {
 	t_ls_path_info			*info;
 	t_ls_path_list			*flist;
+	DIR						*dirp;
 	unsigned int			max_name_size;
 	int						depth;
 	int						n_path;
@@ -80,7 +82,9 @@ int				ls_get_options(int argc, char **argv, short *options);
 void			ls_process_dir(t_ls_data *data);
 void			ls_print_path(t_ls_dir_list *list, short options,
 					char *print_folder_name);
-int				ls_populate_dir(t_ls_dir_list *list);
+int				ls_populate_dir(t_ls_dir_list *list,
+					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+					short options);
 void			ls_add_rec_dir(t_ls_dir_list **list,
 					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
 					short options);

@@ -6,20 +6,36 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:31:19 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 15:42:38 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 17:44:16 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include <stdio.h>
 
 /*
 ** Populate the pathname listof the directories with all the pathname that it
 ** contains (with readdir)
 */
 
-int			ls_populate_dir(t_ls_dir_list *list)
+int			ls_populate_dir(t_ls_dir_list *list,
+				int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+				short options)
 {
+	struct dirent	*entry;
+	t_ls_path_info	*info;
+	t_ls_path_list	*node;
+
 	if (list == 0)
-		return (0);
+		return (1);
+	if (!(list->dirp = opendir(list->info->pathname)))
+	{
+		perror("ft_ls");
+		return (1);
+	}
+	while (!(entry = readdir(list->dirp))
+		&& !(info = ls_create_path_info(entry->d_name))
+		&& !(node = ls_create_path(info)))
+		ls_add_path(list, node, cmp, options);
 	return (0);
 }
