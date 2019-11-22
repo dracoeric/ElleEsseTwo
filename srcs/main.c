@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:42:10 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 15:19:02 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 17:03:51 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ static void	ls_print_arg_files(t_ls_dir_list *list, short options,
 		return ;
 	while (list->flist != 0)
 		ls_print_path(list, options, print_folder_name);
+}
+
+static void	ls_set_cmp(t_ls_data *data)
+{
+	if (data->options & LS_SORT_MOD_TIME && data->options & LS_ACCESS_TIME)
+		data->cmp = ls_cmp_last_access;
+	else if (data->options & LS_SORT_MOD_TIME)
+		data->cmp = ls_cmp_last_mod;
+	else if (data->options & LS_NOT_SORTED)
+		data->cmp = ls_no_sort;
+	else
+		data->cmp = ls_cmp_alpha;
 }
 
 static void	ls_init_data(t_ls_data *data)
@@ -41,6 +53,7 @@ int			main(int argc, char **argv)
 	data->arg_file_list = arg_files;
 	ls_init_data(data);
 	args_offset = ls_get_options(argc, argv, &(data->options));
+	ls_set_cmp(data);
 	if (args_offset < 0)
 		return (1);
 	argv = (argv + args_offset);

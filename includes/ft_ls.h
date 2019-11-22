@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 15:40:40 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 17:02:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_ls_data
 	t_ls_dir_list	*dlist;
 	short			options;
 	char			print_folder_name;
+	int				(*cmp)(t_ls_path_info*, t_ls_path_info*, short);
 }				t_ls_data;
 
 /*
@@ -70,7 +71,7 @@ t_ls_path_info	*ls_create_path_info(char *pathname);
 t_ls_path_list	*ls_create_path(t_ls_path_info *info);
 t_ls_dir_list	*ls_create_dir(t_ls_path_info *info, int depth);
 void			ls_add_path(t_ls_dir_list *list, t_ls_path_list *node,
-							int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
 					short options);
 void			ls_add_dir(t_ls_dir_list **dlist, t_ls_dir_list *node,
 					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
@@ -80,6 +81,9 @@ void			ls_process_dir(t_ls_data *data);
 void			ls_print_path(t_ls_dir_list *list, short options,
 					char *print_folder_name);
 int				ls_populate_dir(t_ls_dir_list *list);
+void			ls_add_rec_dir(t_ls_dir_list **list,
+					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+					short options);
 
 /*
 ** Utility functions
