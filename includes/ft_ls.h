@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 14:00:15 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 15:40:40 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_ls_data
 	t_ls_dir_list	*arg_file_list;
 	t_ls_dir_list	*dlist;
 	short			options;
+	char			print_folder_name;
 }				t_ls_data;
 
 /*
@@ -75,7 +76,10 @@ void			ls_add_dir(t_ls_dir_list **dlist, t_ls_dir_list *node,
 					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
 					short options);
 int				ls_get_options(int argc, char **argv, short *options);
-void			ls_print(t_ls_data *data);
+void			ls_process_dir(t_ls_data *data);
+void			ls_print_path(t_ls_dir_list *list, short options,
+					char *print_folder_name);
+int				ls_populate_dir(t_ls_dir_list *list);
 
 /*
 ** Utility functions
@@ -87,6 +91,7 @@ int				ls_cmp_last_access(t_ls_path_info *a, t_ls_path_info *b,
 int				ls_cmp_last_mod(t_ls_path_info *a, t_ls_path_info *b,
 					short options);
 int				ls_no_sort(t_ls_path_info *a, t_ls_path_info *b, short options);
+void			ls_free_dir(t_ls_dir_list **node);
 void			ls_usage(void);
 
 /*
