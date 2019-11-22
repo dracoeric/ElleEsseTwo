@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:47:18 by erli              #+#    #+#             */
-/*   Updated: 2019/10/25 18:54:27 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 14:00:15 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,60 +25,69 @@
 # define LS_NO_OWNER (1 << 8)
 # define LS_DIR_AS_FILE (1 << 9)
 # define LS_COLOR (1 << 10)
-# define LS_ARGS_LIST (1 << 11)
 
 # include <sys/stat.h>
 
 /*
 ** Structures
 */
-typedef struct	s_ls_entry_list
+
+typedef struct	s_ls_path_info
 {
-	char					*pathname;
-	struct stat				stat;
-	struct s_ls_entry_list	*next;
-}				t_ls_entry_list;
+	char		*pathname;
+	struct stat	stat;
+}				t_ls_path_info;
+
+typedef struct	s_ls_path_list
+{
+	t_ls_path_info			*info;
+	struct s_ls_path_list	*next;
+}				t_ls_path_list;
 
 typedef struct	s_ls_dir_list
 {
-	char					*pathname;
-	t_ls_entry_list			*list;
+	t_ls_path_info			*info;
+	t_ls_path_list			*flist;
 	unsigned int			max_name_size;
-	int						nb_col_entries;
-	int						cursor;
+	int						depth;
+	int						n_path;
 	struct s_ls_dir_list	*next;
 }				t_ls_dir_list;
 
 typedef struct	s_ls_data
 {
-	t_ls_dir_list	*list;
+	t_ls_dir_list	*arg_file_list;
+	t_ls_dir_list	*dlist;
 	short			options;
 }				t_ls_data;
 
 /*
 ** Core functions
 */
-void			ls_create_dir_list(int len, char **args, t_ls_data *data);
-t_ls_entry_list	*ls_create_entry(char *pathname);
-t_ls_dir_list	*ls_create_dir(char *pathname);
-void			ls_add_entry(t_ls_data *data, char *pathname);
-void			ls_add_dir(t_ls_data *data, char *pathname);
+void			ls_consume_arg_list(int len, char **args, t_ls_data *data);
+t_ls_path_info	*ls_create_path_info(char *pathname);
+t_ls_path_list	*ls_create_path(t_ls_path_info *info);
+t_ls_dir_list	*ls_create_dir(t_ls_path_info *info, int depth);
+void			ls_add_path(t_ls_dir_list *list, t_ls_path_list *node,
+							int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+					short options);
+void			ls_add_dir(t_ls_dir_list **dlist, t_ls_dir_list *node,
+					int (*cmp)(t_ls_path_info*, t_ls_path_info*, short),
+					short options);
 int				ls_get_options(int argc, char **argv, short *options);
 void			ls_print(t_ls_data *data);
 
 /*
 ** Utility functions
 */
-int				ls_cmp_alpha(t_ls_entry_list *a, t_ls_entry_list *b,
-						short options);
-int				ls_cmp_last_access(t_ls_entry_list *a, t_ls_entry_list *b,
-						short options);
-int				ls_cmp_last_mod(t_ls_entry_list *a, t_ls_entry_list *b,
-						short options);
-int				ls_no_sort(t_ls_entry_list *a, t_ls_entry_list *b,
-						short options);
+int				ls_cmp_alpha(t_ls_path_info *a, t_ls_path_info *b,
+					short options);
+int				ls_cmp_last_access(t_ls_path_info *a, t_ls_path_info *b,
+					short options);
+int				ls_cmp_last_mod(t_ls_path_info *a, t_ls_path_info *b,
+					short options);
+int				ls_no_sort(t_ls_path_info *a, t_ls_path_info *b, short options);
 void			ls_usage(void);
-void			ls_update_data(t_ls_data *data, t_ls_entry_list *node);
 
 /*
 ** Debuf functions

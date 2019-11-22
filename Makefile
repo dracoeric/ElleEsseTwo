@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 10:23:33 by erli              #+#    #+#              #
-#    Updated: 2019/10/25 18:50:13 by erli             ###   ########.fr        #
+#    Updated: 2019/11/22 13:51:59 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,13 +17,14 @@ SRCSDIR			=	srcs
 OBJSDIR			= 	objs
 
 SRCS			=	main.c	\
-					ls_create_dir_list.c	ls_get_options.c 	ls_print.c	\
-					ls_create_entry.c		ls_create_dir.c		\
-					ls_add_entry.c			ls_add_dir.c	\
+					ls_consume_arg_list.c	ls_get_options.c 	ls_print.c	\
+					ls_create_path_info.c	ls_create_path.c	ls_create_dir.c	\
+					ls_add_dir.c 			ls_add_path.c \
+					\
 					\
 					ls_usage.c 				ls_cmp_last_access.c			\
 					ls_cmp_last_mod.c		ls_no_sort.c		\
-					ls_cmp_alpha.c			ls_update_data.c	\
+					ls_cmp_alpha.c \
 					\
 					\
 					ls_print_options.c ls_print_data.c\
