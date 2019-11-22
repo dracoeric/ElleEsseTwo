@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:04:10 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 13:58:23 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/22 14:29:19 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ static void	ls_print_arg_data(t_ls_dir_list *list)
 {
 	t_ls_path_list *bubble;
 
-	if (list == 0)
-		ft_putstr("no Argument\n");
+	if (list == 0 || list->flist == 0)
+	{
+		ft_putstr("->no Argument\n");
+		return ;
+	}
 	bubble = list->flist;
-	ft_putstr("argumentlist:\n");
+	ft_putstr("->Argument list:\n");
 	while (bubble != 0)
 	{
 		ft_printf("%s->", bubble->info->pathname);
@@ -36,9 +39,11 @@ void		ls_print_data(t_ls_data *data)
 	t_ls_dir_list	*dir_bubble;
 	t_ls_path_list	*path_bubble;
 
-	ft_putstr("\n========== Data ==========\nList:\n");
+	ft_putstr("\n========== Data ==========\n");
 	dir_bubble = data->dlist;
 	ls_print_arg_data(data->arg_file_list);
+	ft_putstr("\n->Dir lists:\n");
+	ft_putstr(dir_bubble == 0 ? "->no directory lists\n" : "");
 	while (dir_bubble != 0)
 	{
 		ft_printf("\n%s:\n", dir_bubble->info->pathname);
