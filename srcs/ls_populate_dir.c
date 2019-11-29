@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:31:19 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 17:44:16 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/29 16:45:08 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ int			ls_populate_dir(t_ls_dir_list *list,
 		perror("ft_ls");
 		return (1);
 	}
-	while (!(entry = readdir(list->dirp))
-		&& !(info = ls_create_path_info(entry->d_name))
-		&& !(node = ls_create_path(info)))
+	while ((entry = readdir(list->dirp)) != NULL)
+	{
+		if (!(info = ls_create_path_info(entry->d_name, 0))
+			|| !(node = ls_create_path(info)))
+			return (1);
 		ls_add_path(list, node, cmp, options);
+	}
 	return (0);
 }

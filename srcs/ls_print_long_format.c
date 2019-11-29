@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_create_path.c                                   :+:      :+:    :+:   */
+/*   ls_print_long_format.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 11:49:28 by erli              #+#    #+#             */
-/*   Updated: 2019/11/29 15:18:08 by erli             ###   ########.fr       */
+/*   Created: 2019/11/29 14:34:52 by erli              #+#    #+#             */
+/*   Updated: 2019/11/29 16:51:24 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-t_ls_path_list	*ls_create_path(t_ls_path_info *info)
+/*
+** print info of the element in long format.
+*/
+
+void		ls_print_long_format(t_ls_path_list *elem, short options)
 {
-	t_ls_path_list *node;
-
-	if (info == 0)
-		return (0);
-	if (!(node = (t_ls_path_list*)malloc(sizeof(t_ls_path_list))))
-	{
-		perror("ft_ls");
-		return (0);
-	}
-	node->info = info;
-	node->next = 0;
-	return (node);
+	if (elem == 0 || options == 0)
+		return ;
+	ft_printf("%s\n", elem->info->pathname);
 }

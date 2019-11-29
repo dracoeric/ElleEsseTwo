@@ -1,5 +1,4 @@
 Things left to do:
-- function to free le path list
-- define ls_print_path
-- don't forget to put functions to free stuffs
-- then formatting
+- define print_total_block
+- define print_ling_format
+- print_paded

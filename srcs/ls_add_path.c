@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 17:38:18 by erli              #+#    #+#             */
-/*   Updated: 2019/11/22 13:59:11 by erli             ###   ########.fr       */
+/*   Updated: 2019/11/29 16:45:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static	void	ls_insert_path_but_not_as_first_element(t_ls_dir_list *dlist,
 	node->next = next;
 	dlist->n_path += 1;
 	len = ft_strlen(node->info->pathname);
-	if (len > dlist->max_name_size)
+	if ((options & LS_SHOW_HIDDEN || node->info->pathname[0] != '.')
+		&& len > dlist->max_name_size)
 		dlist->max_name_size = len;
 }
 
@@ -61,13 +62,14 @@ void			ls_add_path(t_ls_dir_list *dlist, t_ls_path_list *node,
 		dlist->n_path += 1;
 		dlist->max_name_size = ft_strlen(node->info->pathname);
 	}
-	else if (cmp(node->info, head->info, options) > 0)
+	else if (cmp(node->info, head->info, options) == 1)
 	{
 		node->next = head;
 		dlist->flist = node;
 		dlist->n_path += 1;
 		len = ft_strlen(node->info->pathname);
-		if (len > dlist->max_name_size)
+		if ((options & LS_SHOW_HIDDEN || node->info->pathname[0] != '.')
+			&& len > dlist->max_name_size)
 			dlist->max_name_size = len;
 	}
 	else

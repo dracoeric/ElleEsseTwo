@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 10:23:33 by erli              #+#    #+#              #
-#    Updated: 2019/11/22 16:49:57 by erli             ###   ########.fr        #
+#    Updated: 2019/11/29 14:34:10 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,6 +21,7 @@ SRCS			=	main.c	\
 					ls_create_path_info.c	ls_create_path.c	ls_create_dir.c	\
 					ls_add_dir.c 			ls_add_path.c 		ls_print_path.c \
 					ls_process_dir.c 		ls_populate_dir.c	ls_add_rec_dir.c\
+					ls_print_long_format.c \
 					\
 					\
 					ls_usage.c 				ls_cmp_last_access.c			\
