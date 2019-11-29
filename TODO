@@ -1,4 +1,6 @@
 Things left to do:
+- think of a way to pass the full path for directories.
+- getting stat required the full path
 - define print_total_block
 - define print_ling_format
 - print_paded
