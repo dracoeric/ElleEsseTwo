@@ -2,3 +2,4 @@ objs/
 ft_ls
 libft/objs/
 libft/libft.a
+ft_ls.dSYM
